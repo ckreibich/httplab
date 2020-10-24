@@ -1,0 +1,25 @@
+version: "3"
+services:
+  proxy:
+    image: ckreibich/httplab-proxy
+    environment:
+      - BACKEND_HTTP11=http11:80
+      - BACKEND_HTTP2=http2:80
+    ports:
+      - "80:80"
+      - "443:443"
+      - "444:444"
+
+  http11:
+    image: ckreibich/httplab-server
+    environment:
+      - SERVER_MODE=http
+    ports:
+      - "80/tcp"
+    
+  http2:
+    image: ckreibich/httplab-server
+    environment:
+      - SERVER_MODE=http2
+    ports:
+      - "80/tcp"
